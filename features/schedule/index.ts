@@ -1,0 +1,6 @@
+export * from './types/schedule.types'
+export * from './mock/schedule.mock'
+export { default as ScheduleHero } from './components/ScheduleHero'
+export { default as DaySelector } from './components/DaySelector'
+export { default as Timeline } from './components/Timeline'
+export { default as ScheduleCTA } from './components/ScheduleCTA'

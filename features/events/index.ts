@@ -1,0 +1,6 @@
+export * from './types/event.types'
+export * from './mock/events.mock'
+export { default as EventsHero } from './components/EventsHero'
+export { default as EventsFilter } from './components/EventsFilter'
+export { default as EventsGrid } from './components/EventsGrid'
+export { default as AnimatedBackground } from './components/AnimatedBackground'
