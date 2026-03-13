@@ -136,8 +136,8 @@ export const gallery = [
   { id: '2', url: 'https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=1000&auto=format&fit=crop', title: 'Hackathon Crowd' },
   { id: '3', url: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=1000&auto=format&fit=crop', title: 'Workshops' },
   { id: '4', url: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1000&auto=format&fit=crop', title: 'Award Ceremony' },
-  { id: '5', url: 'https://images.unsplash.com/photo-1475721027187-402ad2989a3b?q=80&w=1000&auto=format&fit=crop', title: 'Robotics Arena' },
-  { id: '6', url: 'https://images.unsplash.com/photo-1531050171651-71fb49c71e8b?q=80&w=1000&auto=format&fit=crop', title: 'Networking' }
+  { id: '5', url: '/robotics_arena.png', title: 'Robotics Arena' },
+  { id: '6', url: '/networking.png', title: 'Networking' }
 ]
 
 export const stats = [

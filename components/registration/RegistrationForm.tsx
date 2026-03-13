@@ -23,11 +23,11 @@ export default function RegistrationForm() {
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Text Content */}
-          <div className="animate-fadeInUp">
+          <div className="animate-fadeInUp text-center lg:text-center">
             <h2 className="text-4xl sm:text-6xl font-black text-white mb-6 tracking-tighter leading-none">
               READY TO <span className="text-primary italic">CONQUER?</span>
             </h2>
-            <p className="text-gray-400 text-lg font-medium mb-10 max-w-lg">
+            <p className="text-gray-400 text-lg font-medium mb-10 max-w-lg mx-auto">
               Secure your spot in the most awaited technical symposium of the year. Limited slots available for all major events.
             </p>
             
@@ -37,7 +37,7 @@ export default function RegistrationForm() {
                 { label: 'Step 2', text: 'Fill in your personal and college details.' },
                 { label: 'Step 3', text: 'Receive confirmation and event guidelines.' }
               ].map((step, i) => (
-                <div key={i} className="flex items-start gap-4">
+                <div key={i} className="flex flex-col items-center text-center gap-4">
                   <span className="flex-shrink-0 w-12 h-12 glass-purple rounded-xl flex items-center justify-center text-primary font-black text-sm uppercase">
                     {step.label.split(' ')[1]}
                   </span>

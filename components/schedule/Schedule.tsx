@@ -30,13 +30,13 @@ export default function Schedule() {
               >
                 {/* Content */}
                 <div className="md:w-1/2 w-full px-4 md:px-0">
-                  <div className={`glass p-8 md:p-10 rounded-[2.5rem] border border-white/5 hover:border-primary/50 transition-all duration-500 group relative overflow-hidden text-center md:text-left ${
+                  <div className={`glass p-8 md:p-10 rounded-[2.5rem] border border-white/5 hover:border-primary/50 transition-all duration-500 group relative overflow-hidden text-center ${
                     index % 2 === 0 ? 'md:mr-16' : 'md:ml-16'
                   }`}>
                     {/* Inner Glow */}
                     <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 bg-primary pointer-events-none"></div>
 
-                    <div className="flex flex-col md:flex-row items-center justify-center md:justify-start gap-4 mb-4 relative z-10">
+                    <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-4 relative z-10">
                        <div className="glass-purple px-4 py-1.5 rounded-full text-[10px] font-black text-primary-light tracking-widest uppercase shadow-lg">
                          {item.time}
                        </div>
@@ -47,7 +47,7 @@ export default function Schedule() {
                     <h3 className="text-2xl font-black text-white group-hover:text-primary transition-colors tracking-tighter uppercase italic">
                       {item.event}
                     </h3>
-                    <p className="text-gray-400 text-sm mt-3 font-medium italic flex flex-col md:flex-row items-center justify-center md:justify-start gap-2">
+                    <p className="text-gray-400 text-sm mt-3 font-medium italic flex flex-col md:flex-row items-center justify-center gap-2">
                        <span className="text-primary opacity-50 block md:inline font-black text-[10px] tracking-widest">LOCATION //</span> {item.location}
                     </p>
                   </div>

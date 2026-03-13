@@ -14,7 +14,7 @@ export default function ScrollReveal({
   children, 
   delay = 0, 
   direction = 'up',
-  width = "fit-content" 
+  width = "100%" 
 }: ScrollRevealProps) {
   const directions = {
     up: { y: 40 },

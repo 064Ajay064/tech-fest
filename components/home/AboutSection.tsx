@@ -6,15 +6,15 @@ export default function AboutSection() {
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           {/* Left Side - Text */}
-          <div className="animate-fadeInUp text-center lg:text-left">
+          <div className="animate-fadeInUp text-center">
             <h2 className="text-5xl sm:text-7xl font-black text-white mb-8 tracking-tighter leading-none italic">
               WHERE <span className="text-primary italic">INNOVATION</span> MEETS NEXUS
             </h2>
-            <p className="text-gray-400 text-lg mb-10 leading-relaxed font-medium max-w-2xl mx-auto lg:mx-0">
+            <p className="text-gray-400 text-lg mb-10 leading-relaxed font-medium max-w-2xl mx-auto">
               SNS Techfest 2K26 is more than just a symposium; it's a high-octane arena for the brightest minds in engineering. 
               Designed with a futuristic glassmorphism aesthetic, our platform bridges the gap between today's learning and tomorrow's technology.
             </p>
-            <div className="flex justify-center lg:justify-start gap-4">
+            <div className="flex justify-center gap-4">
               <Button variant="outline" className="border-primary/30 text-primary-light">READ MANIFESTO</Button>
             </div>
           </div>

@@ -86,27 +86,27 @@ export default function EventCard({ event, index }: EventCardProps) {
       </div>
 
       {/* Content */}
-      <div className="p-8 space-y-6 relative z-10" style={{ transform: "translateZ(30px)" }}>
+      <div className="p-8 space-y-6 relative z-10 text-center" style={{ transform: "translateZ(30px)" }}>
         <div className="space-y-3">
           <h3 className="text-2xl font-black text-white tracking-tighter leading-tight group-hover:text-primary-light transition-colors uppercase italic underline decoration-primary/30 underline-offset-8 decoration-2">
             {event.title}
           </h3>
-          <p className="text-gray-400 text-sm font-medium leading-relaxed line-clamp-2">
+          <p className="text-gray-400 text-sm font-medium leading-relaxed line-clamp-2 mx-auto">
             {event.description}
           </p>
         </div>
 
         {/* Prize Pool */}
-        <div className="flex items-center gap-6 pt-4 border-t border-white/5">
-          <div className="space-y-1 flex-1">
+        <div className="flex flex-col items-center gap-6 pt-4 border-t border-white/5">
+          <div className="space-y-1">
             <p className="text-gray-600 text-[10px] font-black tracking-widest uppercase">Prize Pool</p>
             <p className="text-xl font-black text-white italic group-hover:text-accent transition-colors">
               {event.prizePool}
             </p>
           </div>
           
-          <button className="w-12 h-12 glass rounded-xl flex items-center justify-center text-xl hover:bg-primary hover:text-white transition-all transform group-hover:scale-110 group-hover:rotate-12 duration-300 shadow-xl">
-            ↗️
+          <button className="w-full h-12 glass rounded-xl flex items-center justify-center text-xl hover:bg-primary hover:text-white transition-all transform group-hover:scale-105 duration-300 shadow-xl">
+            VIEW DETAILS ↗️
           </button>
         </div>
       </div>

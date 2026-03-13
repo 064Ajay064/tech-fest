@@ -27,9 +27,9 @@ export default function ContactSection() {
           </div>
 
           {/* Contact Details */}
-          <div className="flex flex-col justify-center animate-fadeInUp" style={{ animationDelay: '200ms' }}>
-            <div className="space-y-10">
-              <div className="flex items-start gap-8 group">
+          <div className="flex flex-col justify-center items-center text-center animate-fadeInUp" style={{ animationDelay: '200ms' }}>
+            <div className="space-y-10 w-full">
+              <div className="flex flex-col items-center gap-4 group">
                 <div className="w-16 h-16 glass-purple rounded-2xl flex items-center justify-center text-3xl group-hover:scale-110 group-hover:rotate-6 transition-all shadow-xl">
                   📍
                 </div>
@@ -39,7 +39,7 @@ export default function ContactSection() {
                 </div>
               </div>
 
-              <div className="flex items-start gap-8 group">
+              <div className="flex flex-col items-center gap-4 group">
                 <div className="w-16 h-16 glass-purple rounded-2xl flex items-center justify-center text-3xl group-hover:scale-110 group-hover:rotate-6 transition-all shadow-xl">
                   ✉️
                 </div>
@@ -49,7 +49,7 @@ export default function ContactSection() {
                 </div>
               </div>
 
-              <div className="flex items-start gap-8 group">
+              <div className="flex flex-col items-center gap-4 group">
                 <div className="w-16 h-16 glass-purple rounded-2xl flex items-center justify-center text-3xl group-hover:scale-110 group-hover:rotate-6 transition-all shadow-xl">
                   📞
                 </div>
@@ -61,7 +61,7 @@ export default function ContactSection() {
             </div>
 
             {/* Social Links */}
-            <div className="flex flex-wrap gap-4 mt-16">
+            <div className="flex flex-wrap justify-center gap-4 mt-16">
               {['Instagram', 'Twitter', 'LinkedIn', 'YouTube'].map((social) => (
                 <a key={social} href="#" className="glass px-8 py-4 rounded-2xl text-[10px] font-black tracking-[0.2em] text-white hover:bg-primary transition-all duration-300 shadow-xl italic">
                   {social.toUpperCase()}
