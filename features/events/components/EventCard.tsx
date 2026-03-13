@@ -1,75 +1,118 @@
+'use client'
+
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
+import Image from 'next/image'
 import { Event } from '../types/event.types'
-import Button from '@/components/shared/Button'
+import { formatDate } from '@/lib/formatDate'
 
-export default function EventCard({ event, index }: { event: Event; index: number }) {
+interface EventCardProps {
+  event: Event
+  index: number
+}
+
+export default function EventCard({ event, index }: EventCardProps) {
+  const x = useMotionValue(0)
+  const y = useMotionValue(0)
+
+  const mouseXSpring = useSpring(x)
+  const mouseYSpring = useSpring(y)
+
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["8deg", "-8deg"])
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-8deg", "8deg"])
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    const width = rect.width
+    const height = rect.height
+    const mouseX = e.clientX - rect.left
+    const mouseY = e.clientY - rect.top
+    const xPct = (mouseX / width) - 0.5
+    const yPct = (mouseY / height) - 0.5
+    x.set(xPct)
+    y.set(yPct)
+  }
+
+  const handleMouseLeave = () => {
+    x.set(0)
+    y.set(0)
+  }
+
   return (
-    <div
-      className="group relative h-full animate-fadeInUp"
-      style={{ animationDelay: `${index * 100}ms` }}
+    <motion.div
+      style={{
+        rotateX,
+        rotateY,
+        transformStyle: "preserve-3d",
+      }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.1 }}
+      whileHover={{ y: -10 }}
+      className="glass-card group rounded-[2.5rem] overflow-hidden border border-white/5 hover:border-primary/50 transition-all duration-500 shadow-2xl relative"
     >
-      {/* Glow Effect Background */}
-      <div className="absolute -inset-1 bg-gradient-to-r from-primary to-accent rounded-[2.5rem] blur opacity-0 group-hover:opacity-20 transition duration-500"></div>
-
-      {/* Main Glass Card */}
-      <div className="relative h-full glass rounded-[2.5rem] overflow-hidden border border-white/5 shadow-2xl flex flex-col transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-primary/20">
-
-        {/* Top: Event Image */}
-        <div className="relative h-64 overflow-hidden">
-          <img
-            src={event.image}
-            alt={event.title}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-background-deep via-transparent to-transparent opacity-90"></div>
-
-          {/* Badge */}
-          {event.badge && (
-            <div className="absolute top-6 left-6 glass-purple px-4 py-1.5 rounded-full text-[10px] font-black tracking-widest text-primary-light border border-primary/20">
-              {event.badge.toUpperCase()}
-            </div>
-          )}
-
-          {/* Icon */}
-          <div className="absolute bottom-6 left-8 text-4xl transform transition-transform duration-500 group-hover:scale-125 group-hover:rotate-12">
-            {event.icon === 'terminal' ? '💻' :
-              event.icon === 'code' ? '⌨️' :
-                event.icon === 'box' ? '🤖' :
-                  event.icon === 'cpu' ? '🧠' :
-                    event.icon === 'shield' ? '🛡️' :
-                      event.icon === 'target' ? '🎯' : '🔥'}
-          </div>
+      {/* Glow Effect */}
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-primary/10 to-accent/10 pointer-events-none"></div>
+      
+      {/* Image Container */}
+      <div className="relative h-64 overflow-hidden">
+        <Image
+          src={event.image}
+          alt={event.title}
+          fill
+          className="object-cover transform group-hover:scale-110 transition-transform duration-700"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-background-deep via-background-deep/40 to-transparent"></div>
+        
+        {/* Category Badge */}
+        <div className="absolute top-6 right-6 glass-purple px-4 py-2 rounded-full text-[10px] font-black tracking-widest uppercase text-white shadow-lg">
+          {event.category}
         </div>
 
-        {/* Middle: Content */}
-        <div className="p-8 flex-grow">
-          <h3 className="text-3xl font-black text-white mb-3 tracking-tighter group-hover:text-primary-light transition-colors">
-            {event.title}
-          </h3>
-          <p className="text-gray-400 text-sm leading-relaxed mb-8 font-medium italic">
-            "{event.description}"
-          </p>
-
-          {/* Info Row */}
-          <div className="flex items-center gap-6 pt-4 border-t border-white/5">
-            <div className="flex flex-col">
-              <span className="text-[10px] font-black text-primary-light tracking-widest uppercase mb-1">Duration</span>
-              <span className="text-white text-sm font-bold">{event.duration}</span>
-            </div>
-            <div className="w-px h-8 bg-white/5"></div>
-            <div className="flex flex-col">
-              <span className="text-[10px] font-black text-primary-light tracking-widest uppercase mb-1">Team Size</span>
-              <span className="text-white text-sm font-bold">{event.teamSize}</span>
-            </div>
+        {/* Date & Time Overlay */}
+        <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end">
+          <div className="space-y-1">
+            <p className="text-primary-light text-[10px] font-black tracking-tighter uppercase leading-none opacity-80">Event Schedule</p>
+            <p className="text-white text-lg font-black tracking-tighter leading-none italic uppercase">
+              {formatDate(event.date)}
+            </p>
           </div>
-        </div>
-
-        {/* Bottom: Action */}
-        <div className="p-8 pt-0 mt-auto">
-          <Button variant="outline" className="w-full py-4 text-xs tracking-[0.2em] font-black border-white/10 group-hover:border-primary/50 group-hover:bg-primary/10">
-            VIEW DETAILS
-          </Button>
+          <div className="glass px-3 py-1.5 rounded-lg text-[9px] font-black text-accent uppercase tracking-tighter shadow-xl">
+             {event.time}
+          </div>
         </div>
       </div>
-    </div>
+
+      {/* Content */}
+      <div className="p-8 space-y-6 relative z-10" style={{ transform: "translateZ(30px)" }}>
+        <div className="space-y-3">
+          <h3 className="text-2xl font-black text-white tracking-tighter leading-tight group-hover:text-primary-light transition-colors uppercase italic underline decoration-primary/30 underline-offset-8 decoration-2">
+            {event.title}
+          </h3>
+          <p className="text-gray-400 text-sm font-medium leading-relaxed line-clamp-2">
+            {event.description}
+          </p>
+        </div>
+
+        {/* Prize Pool */}
+        <div className="flex items-center gap-6 pt-4 border-t border-white/5">
+          <div className="space-y-1 flex-1">
+            <p className="text-gray-600 text-[10px] font-black tracking-widest uppercase">Prize Pool</p>
+            <p className="text-xl font-black text-white italic group-hover:text-accent transition-colors">
+              {event.prizePool}
+            </p>
+          </div>
+          
+          <button className="w-12 h-12 glass rounded-xl flex items-center justify-center text-xl hover:bg-primary hover:text-white transition-all transform group-hover:scale-110 group-hover:rotate-12 duration-300 shadow-xl">
+            ↗️
+          </button>
+        </div>
+      </div>
+
+      {/* Corner Decorative Glow */}
+      <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-primary/10 blur-[50px] rounded-full pointer-events-none group-hover:bg-primary/20 transition-colors"></div>
+    </motion.div>
   )
 }

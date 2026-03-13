@@ -8,4 +8,7 @@ export interface Event {
   badge?: string
   icon: string
   image: string
+  date: string
+  time: string
+  prizePool: string
 }

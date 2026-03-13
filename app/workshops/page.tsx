@@ -9,6 +9,9 @@ import WorkshopFilters from '@/components/workshops/WorkshopFilters'
 import WorkshopCard from '@/components/workshops/WorkshopCard'
 import WorkshopModal from '@/components/workshops/WorkshopModal'
 import LoadingSpinner from '@/components/shared/LoadingSpinner'
+import PageTransition from '@/components/shared/PageTransition'
+import ScrollReveal from '@/components/shared/ScrollReveal'
+import { AnimatedBackground } from '@/features/events'
 
 export default function Workshops() {
   const { workshops, loading, activeFilter, setActiveFilter, categories } = useWorkshops()
@@ -26,103 +29,103 @@ export default function Workshops() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-purple-900 text-white relative overflow-hidden">
+    <div className="min-h-screen bg-background-deep text-white relative selection:bg-primary selection:text-white overflow-x-hidden">
+      <AnimatedBackground />
       <Header />
-      {/* Animated Background */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-cyan-500/5 rounded-full blur-2xl animate-bounce"></div>
-      </div>
 
-      {/* Floating Tech Icons */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 left-20 text-4xl opacity-20 animate-float">💻</div>
-        <div className="absolute top-40 right-32 text-3xl opacity-15 animate-pulse">🔗</div>
-        <div className="absolute bottom-32 left-1/4 text-5xl opacity-10 animate-float delay-500">🛡️</div>
-        <div className="absolute bottom-20 right-20 text-4xl opacity-20 animate-pulse delay-700">⚡</div>
-      </div>
+      <main className="relative z-10 pt-20">
+        <PageTransition>
+          {/* Hero Section */}
+          <section className="py-20 px-4 sm:px-6 lg:px-8 text-center">
+            <div className="max-w-4xl mx-auto">
+              <ScrollReveal delay={0.1}>
+                {/* Badge */}
+                <div className="inline-block px-6 py-3 glass-purple border border-primary/30 rounded-full text-primary-light mb-8 uppercase tracking-widest text-[10px] font-black">
+                  Event Dates: March 15-20, 2026
+                </div>
 
-      <div className="relative z-10">
-        {/* Hero Section */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 text-center">
-          <div className="max-w-4xl mx-auto">
-            {/* Badge */}
-            <div className="inline-block px-6 py-3 bg-white/10 backdrop-blur-md border border-purple-500/50 rounded-full text-purple-300 mb-8 animate-pulse">
-              Event Dates: March 15-20, 2026
+                {/* Title */}
+                <h1 className="text-6xl sm:text-8xl font-black mb-6 tracking-tighter leading-none italic">
+                  UNLOCK THE{' '}
+                  <span className="bg-gradient-to-r from-primary via-primary-light to-accent bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(152,6,249,0.5)]">
+                    FUTURE
+                  </span>
+                </h1>
+
+                {/* Subtitle */}
+                <p className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed italic font-medium">
+                  Join hands-on technical workshops led by industry experts and technology pioneers.
+                  Master cutting-edge skills and unlock your potential in the world of technology.
+                </p>
+              </ScrollReveal>
             </div>
+          </section>
 
-            {/* Title */}
-            <h1 className="text-5xl sm:text-7xl font-bold mb-6">
-              Unlock the{' '}
-              <span className="bg-gradient-to-r from-purple-400 via-purple-600 to-purple-800 bg-clip-text text-transparent animate-pulse">
-                Future
-              </span>
-            </h1>
-
-            {/* Subtitle */}
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
-              Join hands-on technical workshops led by industry experts and technology pioneers.
-              Master cutting-edge skills and unlock your potential in the world of technology.
-            </p>
-          </div>
-        </section>
-
-        {/* Filter Buttons */}
-        <section className="py-8 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto">
-            <WorkshopFilters
-              categories={categories}
-              activeFilter={activeFilter}
-              onFilterChange={setActiveFilter}
-            />
-          </div>
-        </section>
-
-        {/* Workshop Cards Grid */}
-        <section className="py-12 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto">
-            {loading ? (
-              <LoadingSpinner />
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {workshops.map((workshop, index) => (
-                  <WorkshopCard
-                    key={workshop.id}
-                    workshop={workshop}
-                    onClick={() => handleWorkshopClick(workshop)}
-                    index={index}
-                  />
-                ))}
+          {/* Filter Buttons */}
+          <ScrollReveal delay={0.3}>
+            <section className="py-8 px-4 sm:px-6 lg:px-8">
+              <div className="max-w-6xl mx-auto">
+                <WorkshopFilters
+                  categories={categories}
+                  activeFilter={activeFilter}
+                  onFilterChange={setActiveFilter}
+                />
               </div>
-            )}
-          </div>
-        </section>
+            </section>
+          </ScrollReveal>
 
-        {/* Bulk Registration CTA */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-white/5 backdrop-blur-md border border-purple-500/30 rounded-xl p-8 text-center shadow-lg shadow-purple-500/20">
-              <h2 className="text-3xl font-bold text-white mb-4">
-                Ready to Level Up Your Skills?
-              </h2>
-              <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
-                Register for multiple workshops and save time. Get access to exclusive sessions,
-                networking opportunities, and certification upon completion.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button className="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-4 px-8 rounded-lg font-semibold shadow-lg shadow-purple-500/50 hover:shadow-purple-500/75 transition-all duration-300 neon-glow">
-                  Register for Multiple Workshops
-                </button>
-                <button className="border-2 border-purple-500 text-purple-300 py-4 px-8 rounded-lg font-semibold hover:bg-purple-500 hover:text-white transition-all duration-300">
-                  View Schedule PDF
-                </button>
-              </div>
+          {/* Workshop Cards Grid */}
+          <section className="py-12 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto">
+              {loading ? (
+                <div className="flex justify-center py-20">
+                  <LoadingSpinner />
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12">
+                  {workshops.map((workshop, index) => (
+                    <ScrollReveal key={workshop.id} delay={index * 0.1}>
+                      <WorkshopCard
+                        workshop={workshop}
+                        onClick={() => handleWorkshopClick(workshop)}
+                        index={index}
+                      />
+                    </ScrollReveal>
+                  ))}
+                </div>
+              )}
             </div>
-          </div>
-        </section>
-      </div>
+          </section>
+
+          {/* Bulk Registration CTA */}
+          <ScrollReveal delay={0.2}>
+            <section className="py-20 px-4 sm:px-6 lg:px-8">
+              <div className="max-w-4xl mx-auto">
+                <div className="glass-purple p-12 rounded-[2.5rem] border border-primary/20 text-center relative overflow-hidden group">
+                  <div className="absolute -top-10 -right-10 w-32 h-32 bg-primary/10 blur-[50px] rounded-full group-hover:bg-primary/20 transition-colors"></div>
+                  
+                  <h2 className="text-4xl font-black text-white mb-6 uppercase tracking-tighter italic">
+                    Ready to Level Up Your <span className="text-primary">Skills?</span>
+                  </h2>
+                  <p className="text-gray-400 mb-10 max-w-2xl mx-auto italic font-medium leading-relaxed">
+                    Register for multiple workshops and save time. Get access to exclusive sessions,
+                    networking opportunities, and certification upon completion.
+                  </p>
+
+                  <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                    <button className="bg-primary hover:bg-primary-dark text-white py-5 px-10 rounded-2xl font-black tracking-widest uppercase text-xs shadow-[0_0_20px_rgba(152,6,249,0.3)] hover:shadow-[0_0_30px_rgba(152,6,249,0.5)] transform hover:scale-[1.02] active:scale-[0.98] transition-all duration-300">
+                      Register for Multiple Workshops
+                    </button>
+                    <button className="glass px-10 py-5 rounded-2xl border border-primary/30 text-primary-light font-black tracking-widest uppercase text-xs hover:bg-primary hover:text-white transition-all duration-300">
+                      View Schedule PDF
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </ScrollReveal>
+        </PageTransition>
+      </main>
 
       <WorkshopModal
         workshop={selectedWorkshop}

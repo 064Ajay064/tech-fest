@@ -1,3 +1,6 @@
+'use client'
+
+import Link from 'next/link'
 import Button from '@/components/shared/Button'
 import CountdownTimer from './CountdownTimer'
 
@@ -20,7 +23,7 @@ export default function HeroSection() {
           </span>
           REGISTRATION OPEN FOR 2K26
         </div>
- 
+
         {/* Main Title */}
         <h1 className="text-5xl sm:text-7xl lg:text-9xl font-black text-white mb-6 tracking-tighter animate-fadeInUp" style={{ animationDelay: '0.1s' }}>
           <span className="bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent">
@@ -29,28 +32,30 @@ export default function HeroSection() {
           <br />
           <span className="text-primary drop-shadow-[0_0_30px_rgba(139,92,246,0.5)]">2K26</span>
         </h1>
- 
+
         {/* Subtitle */}
         <p className="text-lg sm:text-xl text-gray-400 mb-12 max-w-2xl mx-auto font-medium tracking-wide animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
           THE ULTIMATE JUNCTION OF INNOVATION, CODING, AND ROBOTICS. JOIN THE LEAGUE OF TECH ENTHUSIASTS.
         </p>
- 
+
         {/* Countdown Timer Wrapper */}
         <div className="animate-fadeInUp" style={{ animationDelay: '0.3s' }}>
           <CountdownTimer />
         </div>
- 
+
         {/* Buttons */}
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-12 animate-fadeInUp" style={{ animationDelay: '0.4s' }}>
-          <Button variant="primary" className="w-full sm:w-auto px-10 py-4 text-lg">
-            REGISTER NOW
-          </Button>
+          <Link href="/login" className="w-full sm:w-auto">
+            <Button variant="primary" className="w-full px-10 py-4 text-lg">
+              REGISTER NOW
+            </Button>
+          </Link>
           <Button variant="secondary" className="w-full sm:w-auto px-10 py-4 text-lg border-white/10">
             VIEW ALL EVENTS
           </Button>
         </div>
       </div>
- 
+
       {/* Decorative Elements */}
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
         <span className="text-2xl text-white">↓</span>

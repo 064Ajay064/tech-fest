@@ -1,60 +1,42 @@
 'use client'
-import { useState, useEffect } from 'react'
+
+import { motion } from 'framer-motion'
+
+interface StatisticsProps {
+  // Add props if needed in future
+}
+
+const stats = [
+  { label: 'Total Events', value: '40+', icon: '🎮' },
+  { label: 'Prize Pool', value: '₹5L+', icon: '🏆' },
+  { label: 'Participants', value: '2500+', icon: '👥' },
+  { label: 'Tech Workshops', value: '15+', icon: '💻' },
+]
 
 export default function Statistics() {
-  const stats = [
-    { icon: '🎮', value: 40, label: 'UNIQUE EVENTS', suffix: '+' },
-    { icon: '💰', value: 2, label: 'LAKHS PRIZE POOL', suffix: 'L+' },
-    { icon: '👥', value: 1500, label: 'PARTICIPANTS', suffix: '+' }
-  ]
-
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12">
-          {stats.map((stat, index) => (
-            <StatCard key={index} stat={stat} delay={index * 100} />
+    <section className="py-24 px-4 relative z-10">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-10">
+          {stats.map((stat, idx) => (
+            <motion.div
+              key={idx}
+              whileHover={{ y: -10, scale: 1.02 }}
+              className="glass p-8 rounded-[2rem] border border-white/5 text-center flex flex-col items-center group transition-all duration-500 hover:border-primary/30"
+            >
+              <div className="w-14 h-14 glass-purple rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 group-hover:rotate-12 transition-all">
+                {stat.icon}
+              </div>
+              <h3 className="text-4xl sm:text-5xl font-black text-white mb-2 tracking-tighter italic">
+                {stat.value}
+              </h3>
+              <p className="text-primary-light text-[10px] font-black tracking-widest uppercase opacity-60">
+                {stat.label}
+              </p>
+            </motion.div>
           ))}
         </div>
       </div>
     </section>
-  )
-}
-
-function StatCard({ stat, delay }: { stat: any, delay: number }) {
-  const [count, setCount] = useState(0)
-
-  useEffect(() => {
-    let start = 0
-    const end = stat.value
-    if (start === end) return
-
-    let totalMilestones = 50
-    let duration = 2000
-    let increment = end / totalMilestones
-    let timer = setInterval(() => {
-      start += increment
-      if (start >= end) {
-        setCount(end)
-        clearInterval(timer)
-      } else {
-        setCount(Math.floor(start))
-      }
-    }, duration / totalMilestones)
-
-    return () => clearInterval(timer)
-  }, [stat.value])
-
-  return (
-    <div
-      className="glass p-10 rounded-3xl text-center shadow-2xl hover:shadow-primary/20 hover:scale-105 transition-all duration-500 group animate-fadeInUp"
-      style={{ animationDelay: `${delay}ms` }}
-    >
-      <div className="text-5xl mb-6 group-hover:animate-bounce transition-all">{stat.icon}</div>
-      <div className="text-5xl font-black text-white mb-3 tracking-tighter">
-        {count}{stat.suffix}
-      </div>
-      <div className="text-primary-light uppercase tracking-[0.2em] text-xs font-black">{stat.label}</div>
-    </div>
   )
 }

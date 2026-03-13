@@ -67,12 +67,19 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-t border-white/5 mt-20 pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-gray-600 text-[10px] font-black tracking-[0.3em] uppercase">
-            © 2026 SNS TECHFEST • ALL RIGHTS RESERVED
+          <p className="text-gray-600 text-[10px] font-black tracking-[0.3em] uppercase underline decoration-primary/30 underline-offset-4">
+            © 2026 SNS Techfest. Developed by Department of IT, SNSCT.
           </p>
           <div className="flex gap-8">
-            <Link href="#" className="text-gray-600 hover:text-primary transition-colors text-[10px] font-black tracking-widest">PRIVACY</Link>
-            <Link href="#" className="text-gray-600 hover:text-primary transition-colors text-[10px] font-black tracking-widest">TERMS</Link>
+            {['Privacy Policy', 'Terms of Service', 'FAQ'].map((link) => (
+              <Link 
+                key={link}
+                href="#" 
+                className="text-gray-600 hover:text-primary transition-colors text-[10px] font-black tracking-widest uppercase"
+              >
+                {link}
+              </Link>
+            ))}
           </div>
         </div>
       </Container>

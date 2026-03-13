@@ -11,6 +11,9 @@ export const events: Event[] = [
     badge: "Featured",
     icon: "terminal",
     image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1000&auto=format&fit=crop",
+    date: "2026-03-24",
+    time: "09:00 AM",
+    prizePool: "₹50,000"
   },
   {
     id: "code-warriors",
@@ -21,6 +24,9 @@ export const events: Event[] = [
     teamSize: "Solo",
     icon: "code",
     image: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1000&auto=format&fit=crop",
+    date: "2026-03-24",
+    time: "11:00 AM",
+    prizePool: "₹15,000"
   },
   {
     id: "robo-war-2",
@@ -32,6 +38,9 @@ export const events: Event[] = [
     badge: "Champion",
     icon: "box",
     image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1000&auto=format&fit=crop",
+    date: "2026-03-25",
+    time: "10:00 AM",
+    prizePool: "₹30,000"
   },
   {
     id: "gen-ai-masterclass",
@@ -42,6 +51,9 @@ export const events: Event[] = [
     teamSize: "Workshop",
     icon: "cpu",
     image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1000&auto=format&fit=crop",
+    date: "2026-03-25",
+    time: "02:00 PM",
+    prizePool: "Certificates"
   },
   {
     id: "cyber-extraction",
@@ -52,6 +64,9 @@ export const events: Event[] = [
     teamSize: "Solo/Team",
     icon: "shield",
     image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1000&auto=format&fit=crop",
+    date: "2026-03-24",
+    time: "08:00 PM",
+    prizePool: "₹20,000"
   },
   {
     id: "valorant-cup",
@@ -63,5 +78,8 @@ export const events: Event[] = [
     badge: "High-Stake",
     icon: "target",
     image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1000&auto=format&fit=crop",
+    date: "2026-03-25",
+    time: "09:00 AM",
+    prizePool: "₹25,000"
   }
 ];

@@ -1,25 +1,52 @@
+'use client'
+
+import { motion } from 'framer-motion'
+
 interface ButtonProps {
   children: React.ReactNode
   variant?: 'primary' | 'secondary' | 'outline'
   onClick?: () => void
   className?: string
+  pulse?: boolean
+  type?: 'button' | 'submit' | 'reset'
 }
 
-export default function Button({ children, variant = 'primary', onClick, className = '' }: ButtonProps) {
-  const baseClasses = "px-6 py-3 rounded-lg font-bold transition-all duration-400 hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
+export default function Button({ 
+  children, 
+  variant = 'primary', 
+  onClick, 
+  className = '',
+  pulse = false,
+  type = 'button'
+}: ButtonProps) {
+  const baseClasses = "px-6 py-3 rounded-xl font-black transition-all duration-300 flex items-center justify-center gap-2 tracking-widest uppercase text-xs"
 
   const variants = {
-    primary: "bg-gradient-to-r from-primary to-primary-dark text-white shadow-[0_0_20px_rgba(139,92,246,0.3)] hover:shadow-[0_0_30px_rgba(139,92,246,0.5)]",
+    primary: "bg-primary text-white shadow-[0_0_20px_rgba(152,6,249,0.3)]",
     secondary: "bg-white/5 backdrop-blur-md text-white border border-white/10 hover:bg-white/10",
-    outline: "border-2 border-primary text-primary-light hover:bg-primary hover:text-white"
+    outline: "border-2 border-primary text-primary-light hover:bg-primary/10 hover:text-white"
   }
 
   return (
-    <button
+    <motion.button
+      type={type}
+      whileHover={{ scale: 1.05, y: -2 }}
+      whileTap={{ scale: 0.95 }}
+      animate={pulse ? {
+        boxShadow: [
+          "0 0 0 0px rgba(152, 6, 249, 0.4)",
+          "0 0 0 20px rgba(152, 6, 249, 0)",
+        ],
+        transition: {
+          duration: 1.5,
+          repeat: Infinity,
+          ease: "easeInOut" as const
+        }
+      } : {}}
       className={`${baseClasses} ${variants[variant]} ${className}`}
       onClick={onClick}
     >
       {children}
-    </button>
+    </motion.button>
   )
 }

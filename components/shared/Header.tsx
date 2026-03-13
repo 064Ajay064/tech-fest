@@ -1,4 +1,5 @@
 'use client'
+
 import Link from 'next/link'
 import Container from './Container'
 
@@ -16,7 +17,7 @@ export default function Header() {
           </span>
         </Link>
 
-        {/* Navigation Links */}
+        {/* Navigation Links - Removed Sponsors */}
         <nav className="hidden md:flex items-center gap-8">
           {['Home', 'Events', 'Workshops', 'Speakers'].map((link) => (
             <Link
@@ -31,7 +32,7 @@ export default function Header() {
 
         {/* Right Side: Search & Profile */}
         <div className="flex items-center gap-6">
-          <div className="hidden lg:flex items-center glass border-white/5 rounded-full px-4 py-2 w-64 group focus-within:border-primary/50 transition-colors">
+          <div className="hidden lg:flex items-center glass border-white/5 rounded-full px-4 py-2 w-56 group focus-within:border-primary/50 transition-colors">
             <span className="text-gray-500 text-sm mr-2">🔍</span>
             <input
               type="text"
